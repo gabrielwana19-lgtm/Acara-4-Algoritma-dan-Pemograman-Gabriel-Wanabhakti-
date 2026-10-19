@@ -1,0 +1,728 @@
+
+/* =====================================================
+   SISTEM INFORMASI STATISTIK KABUPATEN PULANG PISAU
+   Modern Government Data Portal
+===================================================== */
+
+/* 1. DESIGN TOKENS */
+:root {
+    --green-950: #123b2b;
+    --green-900: #174c36;
+    --green-800: #1d6244;
+    --green-700: #24764f;
+    --green-100: #e4f2e9;
+    --green-50: #f3f8f4;
+
+    --gold-500: #c6a65a;
+    --gold-100: #f5efdF;
+
+    --text-primary: #24342b;
+    --text-secondary: #66756b;
+
+    --page-bg: #f3f6f4;
+    --surface: #ffffff;
+    --border: #e0e8e2;
+
+    --shadow-sm: 0 2px 8px rgba(25, 61, 42, 0.05);
+    --shadow-md: 0 8px 24px rgba(25, 61, 42, 0.08);
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+}
+
+/* 2. RESET & BASE */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 24px;
+}
+
+body {
+    margin: 0;
+    background: var(--page-bg);
+    color: var(--text-primary);
+
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 14px;
+    line-height: 1.65;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+    background: var(--green-100);
+    color: var(--green-950);
+}
+
+/* 3. MAIN CONTAINER */
+.container {
+    width: 1200px;
+    max-width: calc(100% - 40px);
+
+    margin: 28px auto;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-md);
+
+    overflow: hidden;
+}
+
+/* 4. HEADER */
+header {
+    position: relative;
+
+    padding: 30px 28px 26px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #f6faf7 100%
+        );
+
+    border-bottom: 3px solid var(--gold-500);
+}
+
+/* Decorative top line */
+header::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--green-950),
+            var(--green-700),
+            var(--gold-500)
+        );
+}
+
+/* Logo container */
+.logo {
+    width: 92px;
+    height: 92px;
+
+    margin: 0 auto 15px;
+    padding: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow: var(--shadow-sm);
+
+    color: var(--green-900);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Actual logo image */
+.logo img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+    object-position: center;
+}
+
+header h1 {
+    max-width: 850px;
+
+    margin: 0 auto;
+
+    color: var(--green-950);
+
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 750;
+    line-height: 1.35;
+    letter-spacing: 0.3px;
+}
+
+header p {
+    margin: 9px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 14px;
+    letter-spacing: 0.5px;
+}
+
+/* 5. MAIN LAYOUT */
+.content {
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+}
+
+/* 6. SIDEBAR */
+aside {
+    width: 245px;
+    flex: 0 0 245px;
+
+    padding: 28px 18px;
+
+    background: #f8faf8;
+
+    border-right: 1px solid var(--border);
+}
+
+aside h3 {
+    margin: 8px 0 13px;
+    padding-bottom: 10px;
+
+    color: var(--green-950);
+
+    border-bottom: 1px solid var(--border);
+
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+aside ul {
+    margin: 0 0 30px;
+    padding: 0;
+
+    list-style: none;
+}
+
+aside li {
+    margin: 4px 0;
+}
+
+aside a {
+    position: relative;
+
+    display: block;
+
+    padding: 10px 12px;
+
+    border-radius: var(--radius-sm);
+
+    color: #46574b;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+aside a:hover {
+    color: var(--green-900);
+    background: var(--green-100);
+
+    transform: translateX(3px);
+}
+
+aside a:focus-visible {
+    outline: 2px solid var(--green-700);
+    outline-offset: 2px;
+}
+
+/* 7. MAIN CONTENT */
+main {
+    flex: 1;
+    min-width: 0;
+
+    padding: 32px;
+}
+
+section {
+    min-width: 0;
+
+    margin-bottom: 52px;
+
+    scroll-margin-top: 24px;
+}
+
+section:last-child {
+    margin-bottom: 0;
+}
+
+main h2 {
+    margin: 0 0 10px;
+
+    color: var(--green-950);
+
+    text-align: left;
+
+    font-size: 23px;
+    font-weight: 750;
+    line-height: 1.4;
+}
+
+main h2::after {
+    content: "";
+
+    display: block;
+
+    width: 54px;
+    height: 3px;
+
+    margin-top: 12px;
+
+    border-radius: 10px;
+
+    background: var(--gold-500);
+}
+
+main h3 {
+    margin: 32px 0 14px;
+
+    color: var(--green-900);
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* Section descriptions */
+.subtitle {
+    max-width: 850px;
+
+    margin: 0 0 24px;
+
+    color: var(--text-secondary);
+
+    text-align: left;
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+/* 8. TABLES */
+table {
+    width: 100%;
+
+    margin: 14px 0 26px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    overflow: hidden;
+
+    font-size: 12.5px;
+    line-height: 1.6;
+}
+
+/* Table headings */
+th {
+    padding: 13px 11px;
+
+    background: var(--green-900);
+    color: #ffffff;
+
+    border: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.13);
+    border-bottom: 2px solid var(--gold-500);
+
+    text-align: center;
+
+    font-size: 11.5px;
+    font-weight: 700;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+th:last-child {
+    border-right: none;
+}
+
+/* Table cells */
+td {
+    padding: 11px 12px;
+
+    color: #394a3e;
+
+    border: none;
+    border-right: 1px solid #edf1ed;
+    border-bottom: 1px solid #e8eee9;
+
+    vertical-align: middle;
+
+    overflow-wrap: break-word;
+}
+
+td:last-child {
+    border-right: none;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Alternating rows */
+tbody tr:nth-child(even):not(.total) {
+    background: #f7faf8;
+}
+
+tbody tr:nth-child(odd):not(.total) {
+    background: #ffffff;
+}
+
+/* Hover effect */
+tbody tr:not(.total):hover {
+    background: var(--green-100);
+}
+
+/* Numeric alignment */
+td:first-child {
+    text-align: center;
+}
+
+td:nth-child(n+3) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Total rows */
+tr.total td {
+    background: #e8f2eb;
+    color: var(--green-950);
+
+    font-weight: 800;
+
+    border-top: 2px solid #c6ddcc;
+}
+
+/* 9. INFORMATION BLOCKS */
+.information {
+    margin-top: 22px;
+    padding: 19px 21px;
+
+    background: #f7faf8;
+
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green-700);
+
+    border-radius: var(--radius-sm);
+
+    color: var(--text-secondary);
+
+    font-size: 12.5px;
+    line-height: 1.9;
+
+    overflow-wrap: anywhere;
+}
+
+.information p {
+    margin: 5px 0;
+}
+
+.information strong {
+    color: var(--green-950);
+}
+
+/* 10. INFORMATION CARDS */
+.info-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-top: 24px;
+}
+
+.info-card {
+    min-width: 0;
+
+    padding: 21px 18px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--green-700);
+
+    border-radius: var(--radius-md);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.info-card h4 {
+    margin: 0 0 9px;
+
+    color: var(--green-900);
+
+    font-size: 14px;
+    font-weight: 750;
+}
+
+.info-card p {
+    margin: 0;
+
+    color: var(--text-secondary);
+
+    font-size: 12.5px;
+    line-height: 1.8;
+}
+
+/* 11. FOOTER */
+footer {
+    padding: 22px 24px;
+
+    background: var(--green-950);
+
+    border-top: 3px solid var(--gold-500);
+
+    color: #dce9df;
+
+    text-align: center;
+
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+footer strong {
+    color: #ffffff;
+}
+
+/* 12. TABLET */
+@media (max-width: 1000px) {
+    .container {
+        max-width: calc(100% - 24px);
+        margin: 16px auto;
+    }
+
+    aside {
+        width: 210px;
+        flex-basis: 210px;
+        padding: 24px 13px;
+    }
+
+    main {
+        padding: 24px 20px;
+    }
+
+    .info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    table {
+        font-size: 11.5px;
+    }
+
+    th,
+    td {
+        padding: 9px 8px;
+    }
+}
+
+/* 13. MOBILE */
+@media (max-width: 700px) {
+    .container {
+        width: 100%;
+        max-width: 100%;
+
+        margin: 0;
+
+        border: none;
+        border-radius: 0;
+
+        box-shadow: none;
+    }
+
+    header {
+        padding: 25px 16px 22px;
+    }
+
+    .logo {
+        width: 76px;
+        height: 76px;
+
+        margin-bottom: 12px;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    header p {
+        font-size: 12px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    aside {
+        width: 100%;
+        flex: 0 0 auto;
+
+        padding: 20px 16px;
+
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    aside h3 {
+        margin-top: 5px;
+    }
+
+    aside ul {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 4px 8px;
+
+        margin-bottom: 22px;
+    }
+
+    aside a {
+        padding: 9px 10px;
+        font-size: 12px;
+    }
+
+    aside a:hover {
+        transform: none;
+    }
+
+    main {
+        padding: 24px 16px;
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+    main h2 {
+        font-size: 21px;
+    }
+
+    main h3 {
+        font-size: 15px;
+    }
+
+    .subtitle {
+        font-size: 12px;
+    }
+
+    /* Keep wide tables usable on small screens */
+    table {
+        display: block;
+
+        width: 100%;
+        max-width: 100%;
+
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+
+        white-space: normal;
+
+        font-size: 11px;
+    }
+
+    th,
+    td {
+        padding: 9px 10px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .info-card {
+        padding: 17px;
+    }
+
+    .information {
+        padding: 16px;
+    }
+
+    footer {
+        padding: 20px 16px;
+    }
+}
+
+/* 14. SMALL MOBILE */
+@media (max-width: 380px) {
+    header h1 {
+        font-size: 18px;
+    }
+
+    aside ul {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding: 20px 12px;
+    }
+
+    table {
+        font-size: 10.5px;
+    }
+}
+
+/* 15. REDUCED MOTION ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
